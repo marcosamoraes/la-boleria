@@ -1,6 +1,6 @@
 import db from '../config/database.js';
-import validateStoreUserSchema from '../schemas/storeUserSchema.js';
-import validateUpdateUserSchema from '../schemas/updateUserSchema.js';
+import validateStoreOrderSchema from '../schemas/storeOrderSchema.js';
+import validateUpdateOrderSchema from '../schemas/updateOrderSchema.js';
 
 export async function list(req, res) {
   try {
@@ -31,7 +31,7 @@ export async function store(req, res) {
     cpf,
     birthday,
     error,
-  } = await validateStoreUserSchema(req.body);
+  } = await validateStoreOrderSchema(req.body);
 
   if (error) return res.status(error.code).send(error.message);
 
@@ -48,7 +48,7 @@ export async function store(req, res) {
   }
 }
 
-export async function update(req, res) {
+export async function updateDelivered(req, res) {
   const { id } = req.params;
 
   const {
@@ -57,7 +57,7 @@ export async function update(req, res) {
     cpf,
     birthday,
     error,
-  } = await validateUpdateUserSchema(req.body);
+  } = await validateUpdateOrderSchema(req.body);
 
   if (error) return res.status(error.code).send(error.message);
 

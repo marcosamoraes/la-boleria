@@ -1,7 +1,7 @@
 import Joi from 'joi';
 import validator from './validator.js';
 
-const storeUserSchema = Joi.object({
+const storeOrderSchema = Joi.object({
   name: Joi.string().required(),
   phone: Joi.string().min(10).max(11).pattern(/^\d+$/)
     .required(),
@@ -9,5 +9,5 @@ const storeUserSchema = Joi.object({
   birthday: Joi.date().required(),
 });
 
-const validateStoreUserSchema = validator(storeUserSchema);
-export default validateStoreUserSchema;
+const validateStoreOrderSchema = validator(storeOrderSchema);
+export default validateStoreOrderSchema;
