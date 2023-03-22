@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS flavours (
 
 CREATE TABLE IF NOT EXISTS cakes (
   id serial PRIMARY KEY,
-  flavourId INT NOT NULL,
+  flavourId INT,
   name VARCHAR NOT NULL,
   price NUMERIC NOT NULL,
   image VARCHAR NOT NULL,

@@ -2,6 +2,9 @@ const getCodeByErrorType = (type) => {
   let code;
 
   switch (type) {
+    case 'string.uri':
+      code = 422;
+      break;
     default:
       code = 400;
       break;

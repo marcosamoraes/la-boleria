@@ -4,20 +4,17 @@ import validateStoreFlavourSchema from '../schemas/storeFlavourSchema.js';
 export default async function store(req, res) {
   const {
     name,
-    phone,
-    cpf,
-    birthday,
     error,
   } = await validateStoreFlavourSchema(req.body);
 
   if (error) return res.status(error.code).send(error.message);
 
   try {
-    const userExists = await db.query('SELECT id FROM users WHERE "cpf" = $1', [cpf]);
+    const flavourExists = await db.query('SELECT id FROM flavours WHERE "name" = $1', [name]);
 
-    if (userExists.rows.length > 0) return res.sendStatus(409);
+    if (flavourExists.rows.length > 0) return res.sendStatus(409);
 
-    await db.query('INSERT INTO users ("name", "phone", "cpf", "birthday") VALUES ($1, $2, $3, $4)', [name, phone, cpf, birthday]);
+    await db.query('INSERT INTO flavours ("name") VALUES ($1)', [name]);
 
     return res.sendStatus(201);
   } catch (err) {
